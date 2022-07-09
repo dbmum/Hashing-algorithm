@@ -22,6 +22,7 @@ To be a good hashing function according to Robbi Rahim in his book [IJSIA](https
 * H produces output with a fixed length. 
 * It is relatively easy to compute H (x) for any x. 
 * Let it x; it can be computational to find y ≠ x with H (y) = H (x).
+* Use all of the input data to create the output.
 
 We will have tests in the code to assert several of these parameters
 
