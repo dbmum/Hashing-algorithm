@@ -6,13 +6,9 @@ to do a one-way hash of a string. I have implemented a few encryption methods
 in the hopes that my hash will be secure. So far it uses all of the data in the 
 string, and is unique, even with one character changed.
 
-TODO in future weeks:
-    * finish my function to allow for random symbols to be included
-    * allow for an output that does not only use hexadecimal values
-    * Think of some more encryption methods
-    * allow for reading data from a file
-    * supress the output, so that the same number of characters is always produced, 
-        similar to the SHA 256, regardless in input length
+Version 2: I have allowed for a shuffling of the data and having a fixed result length
+of 64 hexadecimal digits for each input, regardless of input length. This should still
+be a good representation of the whole data
 """
 import Hash_Functions
 
