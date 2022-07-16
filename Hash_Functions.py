@@ -1,4 +1,7 @@
 import Constants
+import math
+
+from test import ShuffleRound
 class Hash_Functions:
     
     def hex_step(self,data, number_of_steps):
@@ -43,6 +46,35 @@ class Hash_Functions:
     of binary
     """
     
+
+    def ShuffleRound(self, data, number_of_shuffles):
+        deck = data[:]
+
+        for i in range(number_of_shuffles):
+            
+            # Riffle shuffle
+            even_indexes = deck[::2]
+            odd_indexes = deck[1::2]
+
+            deck = odd_indexes + even_indexes
+            
+            # back to fron wash
+            deck = deck[::-1]
+            
+            # bottom deck cut
+            last_third = deck[math.floor((len(deck) * (9/13))):] 
+            rest_of_deck = deck[:math.floor((len(deck) * (9/13)))]
+
+            deck = last_third + rest_of_deck
+            
+            # half deck cut
+            first_half = deck[:len(deck) // 2]
+            second_half = deck[len(deck) // 2 :] 
+
+            deck = second_half + first_half
+
+        return deck
+
     def hash(self,data):
         """
         This function inputs a string and outputs a hash in hexadecimal that represents
@@ -51,12 +83,14 @@ class Hash_Functions:
         """
         
         c = Constants.Constants()
-
+        
+        data += c.data_expander
         # turn a string into its corresponding ascii value
         ascii_string = ""
         for character in str(data):
             char = ord(character)
             ascii_string += str(char)
+
 
         # to binary
         binary = bin(int(ascii_string) + c.num_1)
@@ -90,12 +124,21 @@ class Hash_Functions:
         stepped = self.hex_step(reverse, c.num_7)
 
 
-        return stepped
+        # Shuffle the data
+        shuffled = ShuffleRound(stepped, c.num_8)
 
-    def standardize_length(self):
-        def make_longer():
-            pass
-        def make_shorter():
-            pass
-        pass
+        # # expand hashes that are too short
+        # if (len(shuffled) < 64):
+        #     to_hash = data
+        #     for i in range(len(shuffled) // 64 + 1):
+        #         to_hash += data
+            
+        #     shuffled = str(hash(to_hash))
         
+        # take the first 64 chars of the hash
+
+        final_hash = shuffled[0:64:]
+
+        return final_hash
+
+     
