@@ -65,5 +65,23 @@ def test():
     else:
         print("Test 3 Failed\n")
 
+
+def Collision_Test():
+    hf = Hash_Functions.Hash_Functions()
+    unique_hashes = set()
+
+    with open('25k.txt') as file:
+        words = file.readlines()
+        for word in words:
+            unique_hashes.add(hf.hash(word))
+    
+        print('number of words')
+        print(len(words))
+
+        print("\nnumber of unique hashes")
+        print(len(unique_hashes))
+
+
 main()
 test()
+Collision_Test()

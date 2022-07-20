@@ -1,7 +1,6 @@
 import Constants
 import math
 
-from test import ShuffleRound
 class Hash_Functions:
     
     def hex_step(self,data, number_of_steps):
@@ -125,7 +124,7 @@ class Hash_Functions:
 
 
         # Shuffle the data
-        shuffled = ShuffleRound(stepped, c.num_8)
+        shuffled = self.ShuffleRound(stepped, c.num_8)
 
         # # expand hashes that are too short
         # if (len(shuffled) < 64):
